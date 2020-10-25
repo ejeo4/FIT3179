@@ -16,24 +16,25 @@
 <h1>Multiple Visualisations</h1>
 
 <h2>This is the first visualisation</h2>
-<div id="bubble_plot"></div>
-
-<h2>This is the second visualisation</h2>
 <div id="choropleth_map"></div>
+  
+<h2>This is the second visualisation</h2>
+<div id="bubble_plot"></div>
 
 <script type="text/javascript">
   
-  var vis1 = "js/BubblePlotInteractive.json";
+  var vis1 = "js/Choropleth_map.vl.json";
+  
+  vegaEmbed('#choropleth_map', vis2).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+  
+  var vis2 = "js/BubblePlotInteractive.json";
   
   vegaEmbed('#bubble_plot', vis1).then(function(result) {
     // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
   }).catch(console.error);
   
-  var vis2 = "js/Choropleth_map.vl.json";
-  
-  vegaEmbed('#choropleth_map', vis2).then(function(result) {
-    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-  }).catch(console.error);
 </script>
 
 </body>
