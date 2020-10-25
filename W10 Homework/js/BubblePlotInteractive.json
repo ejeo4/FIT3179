@@ -1,0 +1,145 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "width": 800,
+  "height": 600,
+  "title": "Biocapacity (Crop land/Built-up land) of Countries (2014)",
+  "data": {
+    "url": "https://raw.githubusercontent.com/ejeo4/FIT3179/main/W10%20Homework/data/NFA%20Dataset%20BiocapPerCap.csv"
+  },
+  "params": [
+    {
+      "name": "Continent_selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "Latin America and the Caribbean",
+          "North America",
+          "Europe",
+          "Africa",
+          "Asia",
+          "Oceania"
+        ],
+        "labels": [
+          "Show All",
+          "Latin America and the Caribbean",
+          "North America",
+          "Europe",
+          "Africa",
+          "Asia",
+          "Oceania"
+        ],
+        "name": "Continent Selection: "
+      }
+    }
+  ],
+  "transform": [
+    {"filter": "datum.crop_land > 0"},
+    {"filter": "datum.built_up_land > 0"},
+    {
+      "filter": "Continent_selection == null || datum.UN_region == Continent_selection"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "built_up_land",
+      "type": "quantitative",
+      "title": "Built up land (global hec)",
+      "axis": {"tickCount": 1},
+      "scale": {"type": "log", "domain": [0.0001, 0.5]}
+    },
+    "y": {
+      "field": "crop_land",
+      "type": "quantitative",
+      "title": "Crop land (global hec)",
+      "axis": {"tickCount": 1},
+      "scale": {"type": "log", "domain": [0.0001, 3]}
+    }
+  },
+  "layer": [
+    {
+      "selection": {
+        "continent_highlight": {
+          "type": "multi",
+          "fields": ["UN_region"],
+          "bind": "legend"
+        }
+      },
+      "mark": "circle",
+      "encoding": {
+        "size": {
+          "field": "population",
+          "type": "quantitative",
+          "scale": {
+            "type": "threshold",
+            "domain": [1000000, 10000000, 50000000, 100000000],
+            "range": [50, 100, 200, 500, 1000]
+          },
+          "legend": {"format": ".1s"}
+        },
+        "color": {
+          "field": "UN_region",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Latin America and the Caribbean",
+              "North America",
+              "Europe",
+              "Africa",
+              "Asia",
+              "Oceania"
+            ],
+            "range": [
+              "#e41a1c",
+              "#984ea3",
+              "#ff7f00",
+              "#a6cee3",
+              "#377eb8",
+              "#a65628"
+            ]
+          }
+        },
+        "opacity": {
+          "condition": {"selection": "continent_highlight", "value": 0.6},
+          "value": 0.2
+        },
+        "tooltip": [
+          {"field": "country", "type": "nominal"},
+          {"field": "crop_land", "type": "quantitative", "format": ","},
+          {"field": "built_up_land", "type": "quantitative", "format": ","},
+          {"field": "total", "type": "quantitative", "format": ","},
+          {"field": "population", "type": "quantitative", "format": ","}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "dx": -12,
+        "fontSize": 11.5,
+        "fontStyle": "italic"
+      },
+      "encoding": {
+        "text": {"field": "country", "type": "nominal"},
+        "color": {"value": "black"},
+        "opacity": {
+          "condition": {
+            "test": "datum['country'] == 'China' || datum['country'] == 'Singapore' || datum['country'] == 'Australia' || datum['country'] == 'New Zealand' || datum['country'] == 'Italy' || datum['country'] == 'United States of America'",
+            "value": 1
+          },
+          "value": 0
+        },
+        "tooltip": [
+          {"field": "country", "type": "nominal"},
+          {"field": "crop_land", "type": "quantitative", "format": ","},
+          {"field": "built_up_land", "type": "quantitative", "format": ","},
+          {"field": "total", "type": "quantitative", "format": ","},
+          {"field": "population", "type": "quantitative", "format": ","}
+        ]
+      }
+    }
+  ],
+  "config": {}
+}
