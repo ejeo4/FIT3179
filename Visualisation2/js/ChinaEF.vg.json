@@ -3,7 +3,7 @@
   "description": "Bar chart with text labels. Apply scale padding to make the frame cover the labels.",
   "background": "white",
   "padding": 5,
-  "width": "container",
+  "width": 225,
   "title": {
     "text": "China: Ecological Footprint of Consumption",
     "frame": "group"
@@ -128,7 +128,6 @@
       "scale": "y",
       "orient": "left",
       "grid": false,
-      "title": "Area Type",
       "zindex": 0
     }
   ],
