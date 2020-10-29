@@ -3,7 +3,7 @@
   "description": "Bar chart with text labels. Apply scale padding to make the frame cover the labels.",
   "background": "white",
   "padding": 5,
-  "width": 223,
+  "width": 225,
   "title": {"text": "China: Biocapacity", "frame": "group"},
   "style": "cell",
   "data": [
@@ -125,7 +125,6 @@
       "scale": "y",
       "orient": "left",
       "grid": false,
-      "title": "Area Type",
       "zindex": 0
     }
   ],
