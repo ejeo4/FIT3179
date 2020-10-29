@@ -1,0 +1,155 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "width": 800,
+  "height": 600,
+  "title": "Sustainability (Biocapacity/Ecological Footprint of Consumption) Comparisons (2014)",
+  "data": {
+    "url": "https://raw.githubusercontent.com/ejeo4/FIT3179/main/Visualisation2/data/WorldTotals2014.csv"
+  },
+  "params": [
+    {
+      "name": "Population_Above",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 300000000,
+        "step": 1000000,
+        "name": "Minimum Population: "
+      }
+    },
+    {
+      "name": "Continent_selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "Latin America and the Caribbean",
+          "North America",
+          "Europe",
+          "Africa",
+          "Asia",
+          "Oceania"
+        ],
+        "labels": [
+          "Show All",
+          "Latin America and the Caribbean",
+          "North America",
+          "Europe",
+          "Africa",
+          "Asia",
+          "Oceania"
+        ],
+        "name": "Continent Selection: "
+      }
+    }
+  ],
+  "transform": [
+    {"filter": "datum.population > Population_Above"},
+    {
+      "filter": "Continent_selection == null || datum.UN_region == Continent_selection"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "BC_total",
+      "type": "quantitative",
+      "title": "BC total (global hec)",
+      "axis": {"tickCount": 1},
+      "scale": {"type": "symlog", "domain": [0, 150]}
+    },
+    "y": {
+      "field": "EF_total",
+      "type": "quantitative",
+      "title": "EF total (global hec)",
+      "axis": {"tickCount": 1},
+      "scale": {"type": "symlog", "domain": [0, 150]}
+    }
+  },
+  "layer": [
+    {
+      "selection": {
+        "continent_highlight": {
+          "type": "multi",
+          "fields": ["UN_region"],
+          "bind": "legend"
+        }
+      },
+      "mark": "circle",
+      "encoding": {
+        "size": {
+          "field": "population",
+          "title": "Population",
+          "type": "quantitative",
+          "scale": {
+            "type": "threshold",
+            "domain": [1000000, 50000000, 100000000, 300000000],
+            "range": [100, 200, 500, 1000, 2000]
+          },
+          "legend": {"format": ".1s"}
+        },
+        "color": {
+          "field": "UN_region",
+          "title": "Continent",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Latin America and the Caribbean",
+              "North America",
+              "Europe",
+              "Africa",
+              "Asia",
+              "Oceania"
+            ],
+            "range": [
+              "#e41a1c",
+              "#984ea3",
+              "#ff7f00",
+              "#a6cee3",
+              "#377eb8",
+              "#a65628"
+            ]
+          }
+        },
+        "opacity": {
+          "condition": {"selection": "continent_highlight", "value": 0.6},
+          "value": 0.2
+        },
+        "tooltip": [
+          {"field": "country", "type": "nominal"},
+          {"field": "population", "type": "quantitative", "format": ","},
+          {"field": "BC_total", "type": "quantitative"},
+          {"field": "EF_total", "type": "quantitative"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "dx": -12,
+        "fontSize": 11.5,
+        "fontStyle": "italic"
+      },
+      "encoding": {
+        "text": {"field": "country", "type": "nominal"},
+        "color": {"value": "black"},
+        "opacity": {
+          "condition": {
+            "test": "datum['country'] == 'China' || datum['country'] == 'Malaysia' || datum['country'] == 'Brazil' || datum['country'] == 'Australia' || datum['country'] == 'Indonesia' || datum['country'] == 'India' || datum['country'] == 'United States of America'",
+            "value": 1
+          },
+          "value": 0
+        },
+        "tooltip": [
+          {"field": "country", "type": "nominal"},
+          {"field": "population", "type": "quantitative", "format": ","},
+          {"field": "BC_total", "type": "quantitative"},
+          {"field": "EF_total", "type": "quantitative"}
+        ]
+      }
+    }
+  ],
+  "config": {}
+}
