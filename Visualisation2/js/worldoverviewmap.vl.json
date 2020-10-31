@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-  "title": "Biocapacity of countries around the world (2014)",
+  "title": "Overview of countries around the world (2014)",
   "width": 800,
   "height": 500,
   "data": {
@@ -44,17 +44,26 @@
       {
         "field": "BC_total",
         "type": "quantitative",
-        "title": "Biocapacity Per Capita"
-      },
-      {
-        "field": "BC_totalHec",
-        "type": "quantitative",
-        "title": "Biocapacity Total Global Hectares"
+        "title": "Biocapacity Per Capita",
+        "format": ".2f"
       },
       {
         "field": "EF_total",
         "type": "quantitative",
-        "title": "Ecological Footprint Per Capita"
+        "title": "Ecological Footprint Per Capita",
+        "format": ".2f"
+      },
+      {
+        "field": "BC_totalHec",
+        "type": "quantitative",
+        "title": "Biocapacity Total Global Hectares",
+        "format": ".2f"
+      },
+      {
+        "field": "EF_totalHec",
+        "type": "quantitative",
+        "title": "Ecological Footprint Total Global Hectares",
+        "format": ".2f"
       }
     ]
   },
