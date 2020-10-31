@@ -4,7 +4,7 @@
   "background": "white",
   "padding": 5,
   "width": 225,
-  "title": {"text": "China: Biocapacity", "frame": "group"},
+  "title": {"text": "China Biocapacity (Global Hec. per Capita)", "frame": "group"},
   "style": "cell",
   "data": [
     {
@@ -43,7 +43,7 @@
       "from": {"data": "data_0"},
       "encode": {
         "update": {
-          "fill": {"value": "#4c78a8"},
+          "fill": {"value": "#7fcdbb"},
           "ariaRoleDescription": {"value": "bar"},
           "description": {
             "signal": "\"Area Type: \" + (isValid(datum[\"Area Type\"]) ? datum[\"Area Type\"] : \"\"+datum[\"Area Type\"]) + \"; Global Hectares per Capita: \" + (format(datum[\"Global Hectares per Capita\"], \"\"))"
