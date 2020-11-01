@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-  "width": 9000,
+  "width": 900,
   "height": 300,
   "title": "Sustainability (Biocapacity/Ecological Footprint of Consumption) Comparisons (2014)",
   "data": {
