@@ -4,7 +4,7 @@
     "text": "Overview of Countries Around the World (2014)",
     "fontSize": "24"
   },
-  "width": 1050,
+  "width": 1000,
   "height": 500,
   "data": {
     "url": "https://raw.githubusercontent.com/ejeo4/FIT3179/main/Visualisation2/js/ne_110m_admin_0_countries.topojson",
