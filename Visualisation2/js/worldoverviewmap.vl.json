@@ -1,6 +1,9 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-  "title": "Overview of countries around the world (2014)",
+    "title": {
+    "text": "Overview of Countries Around the World (2014)",
+    "fontSize": "24"
+  },
   "width": 1050,
   "height": 500,
   "data": {
